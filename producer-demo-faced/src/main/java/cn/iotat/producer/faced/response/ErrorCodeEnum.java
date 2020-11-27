@@ -2,7 +2,8 @@ package cn.iotat.producer.faced.response;
 
 public enum ErrorCodeEnum {
     //=========== 参数错误(1xxx) ===========
-    HAVE_NO_ID("1000","param 'id' is required")
+    HAVE_NO_ID("1000","param 'id' is required"),
+    SWITCH_OFF("1001","switch is off")
     //=========== 内部错误(2xxx) ===========
 
     //=========== 网络错误(3xxx) ===========

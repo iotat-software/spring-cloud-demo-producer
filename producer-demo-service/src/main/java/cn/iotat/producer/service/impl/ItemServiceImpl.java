@@ -8,7 +8,7 @@ import cn.iotat.producer.faced.response.BaseResponse;
 import cn.iotat.producer.faced.response.ErrorCodeEnum;
 import cn.iotat.producer.faced.response.model.ItemInfo;
 import cn.iotat.producer.model.Item;
-import cn.iotat.producer.util.log.LoggerUtil;
+import cn.iotat.producer.config.BizConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +18,8 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemDAO itemDAO;
-
-    private static final LoggerUtil LOG = LoggerUtil.getLogger(ItemServiceImpl.class);
+    @Autowired
+    private BizConfig config;
 
     /**
      * 添加新的item
@@ -41,7 +41,9 @@ public class ItemServiceImpl implements ItemService {
      */
     @Override
     public BaseResponse<List<ItemInfo>> getAllItem() {
-        LOG.info("测试a={}","sss");
+        if (!config.isCanGetAllItem()){
+            return BaseResponse.error(ErrorCodeEnum.SWITCH_OFF);
+        }
         List<Item> itemList = itemDAO.getAllItem();
         List<ItemInfo> itemInfoList = ItemConverter.batchItem2ItemInfo(itemList);
         return BaseResponse.success(itemInfoList);
