@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iotat.producer.dao.ItemDAO">
+    <resultMap id="ItemMap" type="cn.iotat.producer.model.Item">
+        <id column="item_id" jdbcType="INTEGER" property="itemId"/>
+        <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
+    </resultMap>
+    <insert id="addNewItem" parameterType="cn.iotat.producer.model.Item">
+        insert into t_item(item_name) value (#{itemName,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateItem" parameterType="cn.iotat.producer.model.Item">
+        update t_item
+        set item_name=#{itemName,jdbcType=VARCHAR}
+        where item_id = #{itemId,jdbcType=INTEGER}
+    </update>
+    <delete id="deleteItem">
+        delete
+        from t_item
+        where item_id = #{itemId}
+    </delete>
+    <select id="getAllItem" resultMap="ItemMap">
+        select a.item_id as item_id, a.item_name as item_name
+        from t_item a
+    </select>
+    <select id="getItemById" resultMap="ItemMap">
+        select a.item_id as item_id, a.item_name as item_name
+        from t_item a
+        where a.item_id = #{itemId}
+    </select>
+
+
+</mapper>
