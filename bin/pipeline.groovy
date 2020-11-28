@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo "停止正在运行的容器..."
                 sh "docker ps -f name=${DOCKER_NAME} -q | xargs --no-run-if-empty docker container stop"
-                sh "docker ps -a -f name=${DOCKER_NAME}r -q | xargs --no-run-if-empty docker container rm"
+                sh "docker ps -a -f name=${DOCKER_NAME} -q | xargs --no-run-if-empty docker container rm"
             }
         }
         stage('拉取代码') {
@@ -37,7 +37,7 @@ pipeline {
         stage('启动Docker镜像') {
             steps {
                 echo "docker image start..."
-                sh "docker run -d -p 18080:18080 -v /home/iotat/logs:/logs/ --restart=always --name ${DOCKER_NAME} ${IMAGE_NAME}"
+                sh "docker run -d -p 18080:18080 -v /home/iotat/logs:/logs/ --add-host=iotat.cn:172.17.0.1 --restart=always --name ${DOCKER_NAME} ${IMAGE_NAME}"
             }
         }
     }
