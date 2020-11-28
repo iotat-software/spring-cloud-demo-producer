@@ -29,11 +29,11 @@
         <opentracing-spring-jaeger-web-starte.version>3.2.2</opentracing-spring-jaeger-web-starte.version>
         <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
         <alibaba-cloud.version>2.2.3.RELEASE</alibaba-cloud.version>
+        <fastjson.version>1.2.73</fastjson.version>
         <producer-demo-dao.version>0.0.1-SNAPSHOT</producer-demo-dao.version>
         <producer-demo-faced.version>0.0.1-SNAPSHOT</producer-demo-faced.version>
         <producer-demo-service.version>0.0.1-SNAPSHOT</producer-demo-service.version>
         <producer-demo-util.version>0.0.1-SNAPSHOT</producer-demo-util.version>
-        <fastjson.version>1.2.73</fastjson.version>
     </properties>
 
     <dependencyManagement>
