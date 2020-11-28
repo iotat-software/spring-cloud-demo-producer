@@ -184,7 +184,7 @@
         <appender-ref ref="LOG_DAL"/>
     </logger>
     <!--  DAL日志输出  -->
-    <logger name="cn.iotat.producer.aop.ProducerDAOAop" additivity="false" level="DEBUG">
+    <logger name="cn.iotat.producer.aop.DAOLoggerAspectConfig" additivity="false" level="DEBUG">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="LOG_DAL"/>
     </logger>
