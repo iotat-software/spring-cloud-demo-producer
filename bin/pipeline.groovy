@@ -1,18 +1,21 @@
+def DOCKER_NAME = "producer-demo"
+def IMAGE_NAME  = "otat/producer-demo"
+def GITHUB_URL = "https://github.com/iotat-software/spring-cloud-demo-producer.git"
 pipeline {
     agent any
     stages {
         stage('停止正在运行的容器') {
             steps {
                 echo "停止正在运行的容器..."
-                sh 'docker ps -f name=config-center -q | xargs --no-run-if-empty docker container stop'
-                sh 'docker ps -a -f name=config-center -q | xargs --no-run-if-empty docker container rm'
+                sh "docker ps -f name=${DOCKER_NAME} -q | xargs --no-run-if-empty docker container stop"
+                sh "docker ps -a -f name=${DOCKER_NAME}r -q | xargs --no-run-if-empty docker container rm"
             }
         }
         stage('拉取代码') {
             steps {
                 echo '拉取代码...'
                 // Get some code from a GitHub repository
-                git url: 'https://github.com/iotat-software/spring-cloud-demo-producer.git', branch: 'main'
+                git url: "${GITHUB_URL}", branch: 'main'
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
@@ -28,13 +31,13 @@ pipeline {
         stage('打包Docker镜像') {
             steps {
                 echo "打包Docker镜像..."
-                sh "cd producer-demo-starter/src/main/Docker && docker build -t iotat/producer-demo -f ./Dockerfile ../../../"
+                sh "cd producer-demo-starter/src/main/Docker && docker build -t ${IMAGE_NAME} -f ./Dockerfile ../../../"
             }
         }
         stage('启动Docker镜像') {
             steps {
                 echo "docker image start..."
-                sh "docker run -d -p 18080:18080 -v /home/iotat/logs:/logs/ --restart=always --name producer-demo iotat/producer-demo "
+                sh "docker run -d -p 18080:18080 -v /home/iotat/logs:/logs/ --restart=always --name ${DOCKER_NAME} ${IMAGE_NAME}"
             }
         }
     }
