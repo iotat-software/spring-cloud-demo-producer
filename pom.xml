@@ -30,6 +30,7 @@
         <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
         <alibaba-cloud.version>2.2.3.RELEASE</alibaba-cloud.version>
         <fastjson.version>1.2.73</fastjson.version>
+        <spring-cloud-starter-zipkin.version>2.2.6.RELEASE</spring-cloud-starter-zipkin.version>
         <producer-demo-dao.version>0.0.1-SNAPSHOT</producer-demo-dao.version>
         <producer-demo-faced.version>0.0.1-SNAPSHOT</producer-demo-faced.version>
         <producer-demo-service.version>0.0.1-SNAPSHOT</producer-demo-service.version>
@@ -82,6 +83,17 @@
                 <artifactId>producer-demo-utils</artifactId>
                 <version>${producer-demo-util.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zipkin</artifactId>
+                <version>${spring-cloud-starter-zipkin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+    </dependencies>
 </project>
