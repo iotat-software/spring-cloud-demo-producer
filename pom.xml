@@ -3,18 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <!--父类模块，这里的父类模块是spring-boot-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.4.RELEASE</version>
         <relativePath/>
     </parent>
+    <!--项目基本配置-->
     <groupId>cn.iotat</groupId>
     <artifactId>producer-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <description>生产者demo</description>
+    <!--此处值为pom表示这个是一个多模块项目的父模块-->
     <packaging>pom</packaging>
+    <!--下面是该模块具有哪些子模块-->
     <modules>
         <module>producer-demo-starter</module>
         <module>producer-demo-service</module>
@@ -23,6 +26,7 @@
         <module>producer-demo-utils</module>
     </modules>
 
+    <!--这里是自定义的配置，可以通过${}引用-->
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
@@ -37,8 +41,10 @@
         <producer-demo-util.version>0.0.1-SNAPSHOT</producer-demo-util.version>
     </properties>
 
+    <!--依赖管理，注意次数不是依赖，是依赖管理，子类引入的依赖都是从这里进行管理的-->
     <dependencyManagement>
         <dependencies>
+            <!--spring cloud依赖版本引入-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -46,11 +52,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--引入mybatis的springboot-starter-->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring-boot-starter.version}</version>
             </dependency>
+            <!--alibaba nacos依赖版本引入-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -58,6 +66,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--下面是本系统的依赖引入-->
             <dependency>
                 <groupId>cn.iotat</groupId>
                 <artifactId>producer-demo-dao</artifactId>
@@ -74,15 +83,17 @@
                 <version>${producer-demo-service.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>cn.iotat</groupId>
                 <artifactId>producer-demo-utils</artifactId>
                 <version>${producer-demo-util.version}</version>
             </dependency>
+            <!--fastjson引入-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--zipkin引入-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-zipkin</artifactId>
@@ -90,6 +101,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--全局引入zipkin-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

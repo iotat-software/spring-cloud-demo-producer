@@ -1,3 +1,6 @@
+/**
+ * pipeline文件，详细使用查看文档
+ **/
 def DOCKER_NAME = "producer-demo"
 def IMAGE_NAME  = "iotat/producer-demo"
 def GITHUB_URL = "https://github.com/iotat-software/spring-cloud-demo-producer.git"

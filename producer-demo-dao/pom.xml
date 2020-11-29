@@ -2,23 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--指定父模块-->
     <parent>
         <artifactId>producer-demo</artifactId>
         <groupId>cn.iotat</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <!--如果没有maven私服环境，这里进行使用relativePath，表示优先寻找相对路径的父模块的pox.xml文件-->
         <relativePath>../pom.xml</relativePath>
     </parent>
+    <!--maven的model模型，一般都为4.0.0，默认生成-->
     <modelVersion>4.0.0</modelVersion>
-
+    <!--子模块的artifactId-->
     <artifactId>producer-demo-dao</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <!--子模块的version，除faced模块外，一般可以不设置，此处引用了父模块的变量-->
+    <version>${producer-demo-dao.version}</version>
+    <!--子模块描述，可省略-->
     <description>服务生产者DAO层</description>
 
+    <!--子模块的依赖，需要使用到哪些依赖就添加哪些依赖，尽量做到不添加无意义的依赖-->
+    <!--其实这里的依赖还需要进行排包，但是考虑到比较复杂，且个人开发一般不会出现问题，这里就省略了-->
     <dependencies>
+        <!--mybatis依赖-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
+        <!--下面两个依赖为spring-aop的核心功能-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -27,6 +36,7 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
         </dependency>
+        <!--本项目的utils模块，包含了自定义的参数和json格式化更具类，以及AbstractAspectConfig类-->
         <dependency>
             <groupId>cn.iotat</groupId>
             <artifactId>producer-demo-utils</artifactId>

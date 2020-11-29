@@ -4,32 +4,31 @@ package cn.iotat.producer.util.log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 自定义日志输出工具，
+ */
 public final class LoggerUtil {
-    private Logger LOG = null;
+    private static final Logger LOG = LoggerFactory.getLogger(LoggerUtil.class);
+    private final String className;
 
-    public static final LoggerUtil getLogger(Class c) {
-        LoggerUtil loggerUtil = new LoggerUtil();
-        loggerUtil.LOG = LoggerFactory.getLogger(c);
-        return loggerUtil;
-    }
-
-    private LoggerUtil() {
+    public LoggerUtil(Class c) {
+        className = c.getName();
     }
 
     public void debug(String s, Object... o) {
-        LOG.debug(s, o);
+        LOG.debug("{}," + s, className, o);
     }
 
     public void info(String s, Object... o) {
-        LOG.info(s, o);
+        LOG.info("{}," + s, className, o);
     }
 
     public void warn(String s, Object... o) {
-        LOG.warn(s, o);
+        LOG.warn("{}," + s, className, o);
     }
 
     public void error(String s, Object... o) {
-        LOG.error(s, o);
+        LOG.error("{}," + s, className, o);
     }
 
 }

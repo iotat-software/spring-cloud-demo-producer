@@ -1,9 +1,12 @@
 package cn.iotat.producer.faced.response;
 
+import cn.iotat.producer.faced.common.ErrorCodeEnum;
+
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
- * 基础响应类
+ * 基础响应类，包含相应的基本数据结构和公共数据
  *
  * @author Pang
  * @date 2020/10/13
@@ -39,6 +42,20 @@ public class BaseResponse<T> implements Serializable {
         response.setSuccess(true);
         response.setData(data);
         return response;
+    }
+
+    /**
+     * 返回分页数据
+     *
+     * @param data       数据
+     * @param pageNum    页码
+     * @param pageSize   页长
+     * @param totalCount 数据总数
+     * @param <E>        数据类型
+     * @return 响应
+     */
+    public static <E> BaseResponse<PageData<E>> pageResponse(Collection<E> data, int pageNum, int pageSize, int totalCount) {
+        return BaseResponse.success(PageData.genPageResponse(data, pageNum, pageSize, totalCount));
     }
 
     /**

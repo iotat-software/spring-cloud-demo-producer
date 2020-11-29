@@ -1,12 +1,28 @@
-package cn.iotat.producer.faced.response;
+package cn.iotat.producer.faced.common;
 
+/**
+ * 错误码统计，此处错误码为{@link cn.iotat.producer.faced.response.BaseResponse}类下的errCode和errMsg两个值
+ * 在实际生产活动中，该错误码应该由统一的平台进行管理，需要创建新的错误码则向平台进行申请，
+ * 以便于企业进行错误码统计管理以及减少不同业务部门之间的障碍
+ * 另外，错误码一般分为几种，包括但不限于下面注释的几种
+ *
+ * @author pang
+ */
 public enum ErrorCodeEnum {
     //=========== 参数错误(1xxx) ===========
+    /**
+     * 必填参数没有填写
+     */
     HAVE_NO_ID("1000","param 'id' is required"),
-    SWITCH_OFF("1001","switch is off")
     //=========== 内部错误(2xxx) ===========
 
     //=========== 网络错误(3xxx) ===========
+
+    //=========== 业务错误(4xxx) ===========
+    /**
+     * 由于开关关闭导致访问失败
+     */
+    SWITCH_OFF("4000","switch is off")
     ;
 
     ErrorCodeEnum(String errCode, String errMsg) {

@@ -21,12 +21,16 @@
     <select id="getAllItem" resultMap="ItemMap">
         select a.item_id as item_id, a.item_name as item_name
         from t_item a
-    </select>
+        limit #{pageSize} offset #{pageNum}
+
+</select>
     <select id="getItemById" resultMap="ItemMap">
         select a.item_id as item_id, a.item_name as item_name
         from t_item a
         where a.item_id = #{itemId}
     </select>
-
-
+    <select id="getAllItemCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_item
+    </select>
 </mapper>

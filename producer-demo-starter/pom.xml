@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--大部分详情见producer-demo-dao/pom.xml-->
     <parent>
         <artifactId>producer-demo</artifactId>
         <groupId>cn.iotat</groupId>
@@ -14,6 +15,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <description>服务生产者启动器</description>
 
+    <!--此处的依赖，尤其是本项目的依赖一定要全，不然无法加载自定义spring组件-->
+    <!--其次，由于配置项都在该模块下，因此配置使用到的模块也需要一并加载-->
     <dependencies>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -71,6 +74,7 @@
         </dependency>
     </dependencies>
 
+    <!--打包需要-->
     <build>
         <plugins>
             <plugin>

@@ -1,7 +1,5 @@
 package cn.iotat.producer.aop;
 
-import cn.iotat.producer.util.json.JsonUtil;
-import cn.iotat.producer.util.param.ParamUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,17 +8,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 /**
+ * service层日志输出配置
+ * {@link cn.iotat.producer.aop.DAOLoggerAspectConfig }
+ *
  * @author Pang
  * @date 2020/10/22
  */
 @Aspect
 @Component
-public class ServiceLoggerAspectConfig {
+public class ServiceLoggerAspectConfig extends AbstractAspectConfig {
 
+    /**
+     * 普通日志，输出调用方法的入参、返回值
+     */
     static final Logger LOG = LoggerFactory.getLogger(ServiceLoggerAspectConfig.class);
+    /**
+     * 监控日志，输出调用方法的耗时
+     */
     static final Logger LOG_MONITOR = LoggerFactory.getLogger("monitor");
 
     /**
@@ -30,27 +35,16 @@ public class ServiceLoggerAspectConfig {
     public void servicePoint() {
     }
 
+    /**
+     * 对切面进行操作
+     *
+     * @param point 切点
+     * @return 切面方法执行的结果
+     */
     @Around("servicePoint()")
+    @Override
     public Object around(ProceedingJoinPoint point) {
-        long start = System.currentTimeMillis();
-        // 类名
-        String className = point.getSignature().getDeclaringTypeName();
-        // 方法名
-        String methodName = point.getSignature().getName();
-        // 参数
-        Map<String, Object> argsMap = ParamUtil.getArgsMap(point);
-        // 结果
-        Object result = null;
-        try {
-            result = point.proceed();
-            LOG.info("{}#{},args={},result={}", className, methodName, JsonUtil.map2JsonStr(argsMap), result);
-        } catch (Throwable e) {
-            LOG.error("{}#{},args={}", className, methodName, JsonUtil.map2JsonStr(argsMap), e);
-        } finally {
-            long time = System.currentTimeMillis() - start;
-            LOG_MONITOR.info("{}#{}|{}", className, methodName, time);
-        }
-        return result;
+        return printLog(LOG, LOG_MONITOR, point);
     }
 
 }

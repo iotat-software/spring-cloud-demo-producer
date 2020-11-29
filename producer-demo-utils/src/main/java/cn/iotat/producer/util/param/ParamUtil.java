@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 参数工具类，主要是用于切面获取参数
  * @author Pang
  * @date 2020/10/22
  */

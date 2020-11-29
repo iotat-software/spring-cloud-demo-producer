@@ -1,11 +1,24 @@
 package cn.iotat.producer.faced.response.model;
 
+import cn.iotat.producer.faced.request.model.ItemAddRequest;
+
 import java.io.Serializable;
 
+/**
+ * item信息类，这里主要是用于区分DAO层的model类，该包下的类均为向其他系统或向C端提供的类
+ * 更多信息参考{@link ItemAddRequest}
+ *
+ * @author pang
+ */
 public class ItemInfo implements Serializable {
     private static final long serialVersionUID = -7058865937293412516L;
-
+    /**
+     * itemId
+     */
     private long id;
+    /**
+     * itemName
+     */
     private String name;
 
     public long getId() {

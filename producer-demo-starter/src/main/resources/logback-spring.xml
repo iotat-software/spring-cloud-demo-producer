@@ -193,7 +193,7 @@
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="LOG_SERVICE"/>
     </logger>
-    <logger name="cn.iotat.producer.util.log" additivity="true" llevel="${LOG_ROOT_LEVEL}">
+    <logger name="cn.iotat.producer.util.log.LoggerUtil" additivity="false" llevel="${LOG_ROOT_LEVEL}">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="LOG_CUSTOMISE"/>
     </logger>

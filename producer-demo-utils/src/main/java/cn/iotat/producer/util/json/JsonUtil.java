@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * fastjson的封装工具类
+ */
 public class JsonUtil {
     /**
      * 数组转换为json字串
