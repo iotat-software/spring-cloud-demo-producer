@@ -41,7 +41,7 @@ pipeline {
         stage('启动Docker镜像') {
             steps {
                 echo "docker image start..."
-                sh "docker run -d -p 18080:18080 -v /home/iotat/logs:/logs/ --add-host=iotat.cn:172.17.0.1 --restart=always --name ${DOCKER_NAME} ${IMAGE_NAME}"
+                sh "docker run -d -p ${PORT} -v /home/iotat/logs:/logs/ --add-host=iotat.cn:172.17.0.1 --restart=always --name ${DOCKER_NAME} ${IMAGE_NAME}"
             }
         }
     }
