@@ -4,6 +4,7 @@
 def DOCKER_NAME = "producer-demo"
 def IMAGE_NAME  = "iotat/producer-demo"
 def GITHUB_URL = "https://github.com/iotat-software/spring-cloud-demo-producer.git"
+def PORT = "18080:18080"
 pipeline {
     agent any
     stages {
